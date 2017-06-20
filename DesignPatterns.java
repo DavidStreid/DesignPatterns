@@ -1,12 +1,14 @@
 import singleton.UserSession;
 import factory.*;
 import prototype.*;
+import objectPool.*;
 
 public class DesignPatterns{
-	public static void main(String[] args){
-		demoSingleton();		
-		demoFactory();
-		demoPrototype();	
+	public static void main(String[] args) throws InterruptedException{
+		//demoSingleton();		
+		//demoFactory();
+		//demoPrototype();
+		demoObjectPool();	
 	}
 	private static void demoSingleton(){
 		System.out.println("****************\nSINGLETON DESIGN\n****************");
@@ -44,5 +46,11 @@ public class DesignPatterns{
 		elf2.setName("Elfy");
 		System.out.println("ORC: " + orc2.getName());
                 System.out.println("ELF: " + elf2.getName());			
+	}
+	private static void demoObjectPool() throws InterruptedException{
+		ThreadPool threadPool = ThreadPool.getPool();
+		for(int i = 5; i>=0; i--){
+			threadPool.getThread(i);	
+		}
 	}
 }
