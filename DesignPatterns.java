@@ -1,3 +1,5 @@
+import java.lang.Math;
+
 import singleton.UserSession;
 import factory.*;
 import prototype.*;
@@ -47,10 +49,16 @@ public class DesignPatterns{
 		System.out.println("ORC: " + orc2.getName());
                 System.out.println("ELF: " + elf2.getName());			
 	}
+	/*  Creates 10 "threads" made available in an object pool. 
+		When used, they are placed in another set and made unavailable for future jobs. 
+		When no threads are available, a new thread is created */
 	private static void demoObjectPool() throws InterruptedException{
+		System.out.println("*****************\nOBJECTPOOL DESIGN\n*****************");
 		ThreadPool threadPool = ThreadPool.getPool();
-		for(int i = 5; i>=0; i--){
-			threadPool.getThread(i);	
+		int threadLength;
+		for(int i = 10; i>=0; i--){
+			threadLength = 1 + (int) (Math.random()*2);
+			threadPool.getThread(threadLength);	
 		}
 	}
 }

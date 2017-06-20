@@ -22,30 +22,36 @@ public class ThreadPool{
 	}
 
 	public static Thread getThread(int jobTimeLength){
-		Calendar calendar = Calendar.getInstance();
-		calendar.add(Calendar.SECOND, jobTimeLength);
+		Calendar now = Calendar.getInstance();
 
 		// Check if any jobs have completed
-		for(Thread t : inUse){
-			if(t.getCompletionTime().compareTo(calendar) >= 0){
-				inUse.remove(t);
-				available.add(t);
-				System.out.println("Thread completed");
+		ListIterator litr = (new ArrayList<Thread>(inUse)).listIterator();
+		Thread currThread;
+		while(litr.hasNext()){
+			currThread = (Thread) litr.next();
+			if(currThread.getCompletionTime().compareTo(now) <= 0){
+				litr.remove();
+				available.add(currThread);
+				System.out.println("\tAdding Thread " + Integer.toString(currThread.getId()) + " back to threadPool");
 			}
 		}
 
+		Calendar threadEnd = Calendar.getInstance();
+		threadEnd.setTimeInMillis(System.currentTimeMillis() + jobTimeLength);
+		//threadEnd.add(Calendar.MILLISECONDS, jobTimeLength);
 		if(!available.isEmpty()){
 			Thread oldThread = available.iterator().next();	
 			available.remove(oldThread);
 			inUse.add(oldThread);
-			oldThread.assign(calendar);
+			oldThread.assign(threadEnd);
+			System.out.println("\tTaking Thread " + Integer.toString(oldThread.getId()) + " from threadPool");
 			return oldThread;
 		} 
 
 		// Create new thread because none are available;
 		threadCount++;
 		System.out.println("New Thread Created, thread " + Integer.toString(threadCount));
-		Thread newThread = new Thread(calendar);
+		Thread newThread = new Thread(threadEnd, threadCount);
 		inUse.add(newThread);
 		return newThread;
 	}
