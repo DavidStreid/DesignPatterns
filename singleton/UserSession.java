@@ -9,25 +9,39 @@ public class UserSession{
 	private static String role;
 	
 	// Creates new instance of UserSession on class load
-	private static UserSession instance = new UserSession();
+	private static UserSession instance;
 
 	// Constructor - can't be publically instantiated
 	private UserSession(){
 		System.out.println("Inside constructor");
+
 		userId = (int)(new Date().getTime()/1000);
 		name = "David";
 		role = "Backend Engineer";
+		
 		System.out.println("\tNew User Created: " + Integer.toString(userId) +
 			"\n\tName: " + name +
 			"\n\tRole: " + role);
-		count = 0;
+		count = 1;
 	}
 
 	public static UserSession getInstance(){
 		System.out.println("Inside getInstance()");
+
+		// Double-Checked locking of Singleton Constructor
+		// Alternative is to synchronize constructor method, but will reduce throughput
+		if(instance == null){
+			synchronized(UserSession.class){
+				if(instance == null){
+					instance = new UserSession();
+				}
+			}
+		}
+
 		count++;
 		System.out.println("\tRetrieving User Instance: " + Integer.toString(userId) +
 			"\n\tName: " + name + "\tRole: " + role);
+
 		return instance;
 	}
 
