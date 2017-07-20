@@ -8,7 +8,7 @@ public class Fridge{
 		Random rand = new Random();
 		int randInt;
 		if(foodGroup.equalsIgnoreCase("FRUIT")){
-			randInt = rand.nextInt(1);
+			randInt = rand.nextInt(2);
 			switch(randInt){
 				case 0: return new Apple();
 				case 1: return new Banana();
