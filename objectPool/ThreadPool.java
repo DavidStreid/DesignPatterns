@@ -24,7 +24,7 @@ public class ThreadPool{
 	public static Thread getThread(int jobTimeLength){
 		Calendar now = Calendar.getInstance();
 
-		// Check if any jobs have completed
+		// Check if any jobs have completed and if so, add threads back to available
 		ListIterator litr = (new ArrayList<Thread>(inUse)).listIterator();
 		Thread currThread;
 		while(litr.hasNext()){
