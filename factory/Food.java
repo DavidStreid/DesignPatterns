@@ -3,6 +3,7 @@ package factory;
 import java.util.Calendar;
 import java.util.Date;
 
+// Make return of factory general, i.e. Interface or Abstract Class
 public abstract class Food{
 	String name;
 	String foodGroup;
