@@ -8,9 +8,9 @@ import objectPool.*;
 public class DesignPatterns{
 	public static void main(String[] args) throws InterruptedException{
 		//demoSingleton();		
-		//demoFactory();
+		demoFactory();
 		//demoPrototype();
-		demoObjectPool();	
+		//demoObjectPool();	
 	}
 	private static void demoSingleton(){
 		System.out.println("****************\nSINGLETON DESIGN\n****************");
@@ -56,7 +56,7 @@ public class DesignPatterns{
 		System.out.println("*****************\nOBJECTPOOL DESIGN\n*****************");
 		ThreadPool threadPool = ThreadPool.getPool();
 		int threadLength;
-		for(int i = 10; i>=0; i--){
+		for(int i = 25; i>=0; i--){
 			threadLength = 1 + (int) (Math.random()*2);
 			threadPool.getThread(threadLength);	
 		}
