@@ -9,7 +9,7 @@ public class AvatarCache{
 		if(avatarMap.containsKey(warriorClass.toUpperCase())){
 			System.out.println("\t" + warriorClass + " is cached");
 			Avatar cachedAvatar = avatarMap.get(warriorClass.toUpperCase());
-			return (Avatar) cachedAvatar.clone();
+			return (Avatar) cachedAvatar.clone();	// Return clone of Avatar
 		} else {
 			System.out.println("Accessing Avatar Database...");
 			if(warriorClass.equalsIgnoreCase("ORC")){

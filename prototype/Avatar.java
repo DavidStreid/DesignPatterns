@@ -22,12 +22,13 @@ public abstract class Avatar implements Cloneable {
 	public int getAge(){
 		return age;
 	}
-        public void attack(){
-                System.out.println("Used " + weapon + " " + attack + ". Dealt " + Integer.toString(attackDamage) + " damage");
-        }
-        public void monologue(){
-                System.out.println(lengthyBackStory);
-        }
+    public void attack(){
+            System.out.println("Used " + weapon + " " + attack + ". Dealt " + Integer.toString(attackDamage) + " damage");
+    }
+    public void monologue(){
+            System.out.println(lengthyBackStory);
+    }
+    // Override - Returns a clone of Avatar
 	public Object clone() {
 		Object clone = null;
 		try {
