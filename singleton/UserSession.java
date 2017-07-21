@@ -9,7 +9,7 @@ public class UserSession{
 	private static String role;
 	
 	// Creates new instance of UserSession on class load
-	private static UserSession instance;
+	private volatile static UserSession instance;
 
 	// Constructor - can't be publically instantiated
 	private UserSession(){
