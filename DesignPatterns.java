@@ -4,13 +4,16 @@ import singleton.UserSession;
 import factory.*;
 import prototype.*;
 import objectPool.*;
+import builder.outfit.*;
+import builder.phone.*;
 
 public class DesignPatterns{
 	public static void main(String[] args) throws InterruptedException{
-		//demoSingleton();		
+		demoSingleton();		
 		demoFactory();
-		//demoPrototype();
-		//demoObjectPool();	
+		demoPrototype();
+		demoObjectPool();	
+		demoBuilder();
 	}
 	private static void demoSingleton(){
 		System.out.println("****************\nSINGLETON DESIGN\n****************");
@@ -60,5 +63,41 @@ public class DesignPatterns{
 			threadLength = 1 + (int) (Math.random()*2);
 			threadPool.getThread(threadLength);	
 		}
+	}
+
+	private static void demoBuilder() throws InterruptedException{
+		System.out.println("**************\nBUILDER DESIGN\n**************");
+		// STANDARD BUILDER METHOD
+		System.out.println("STANDARD METHOD");
+		// Formal Wear
+		OutfitBuilder builder = new FormalOutfitBuilder();
+		OutfitDirector director = new OutfitDirector(builder);
+		director.build();
+		Outfit formalOutfit = builder.getOutfit();
+		System.out.println(formalOutfit.toString());
+
+		// Casual Wear
+		builder = new CasualOutfitBuilder();
+		director = new OutfitDirector(builder);
+		director.build();
+		Outfit casualOutfit = builder.getOutfit();
+		System.out.println(casualOutfit.toString());
+
+		// Telescoping Method
+		System.out.println("TELESCOPING METHOD");
+		String[] apps = {"YikYak"};
+		Phone.PhoneBuilder phoneBuilder = new Phone.PhoneBuilder("Tyler Droll", "123-456-7890", "Apple").canText(true).hasGPS(true).supportsApps(true).apps(apps);
+		Phone phone = phoneBuilder.build();
+		System.out.println(phone.toString());
+
+		phoneBuilder = new Phone.PhoneBuilder("Mike", "012-345-6789", "Apple");
+		phone = phoneBuilder.build();
+		System.out.println(phone.toString());
+
+		phoneBuilder = new Phone.PhoneBuilder("Pi", "314-159-2653", "Android").canText(true).hasGPS(true);
+		phone = phoneBuilder.build();
+		System.out.println(phone.toString());
+
+	
 	}
 }
