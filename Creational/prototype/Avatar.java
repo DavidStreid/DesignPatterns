@@ -1,4 +1,4 @@
-package prototype;
+package Creational.prototype;
 
 public abstract class Avatar implements Cloneable {
 	String name;

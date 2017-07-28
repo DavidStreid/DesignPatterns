@@ -1,4 +1,4 @@
-package factory;
+package Creational.factory;
 
 public class Banana extends Food{
 	public Banana(){

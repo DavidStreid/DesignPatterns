@@ -1,4 +1,4 @@
-package singleton;
+package Creational.singleton;
 
 import java.util.Date;
 

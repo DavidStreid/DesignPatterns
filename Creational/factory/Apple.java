@@ -1,4 +1,4 @@
-package factory;
+package Creational.factory;
 
 public class Apple extends Food{
 	public Apple(){

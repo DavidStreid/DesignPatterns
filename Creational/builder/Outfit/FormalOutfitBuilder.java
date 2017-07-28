@@ -1,4 +1,4 @@
-package builder.outfit;
+package Creational.builder.outfit;
 
 public class FormalOutfitBuilder implements OutfitBuilder {
 	public FormalOutfitBuilder(){}

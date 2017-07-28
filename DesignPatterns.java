@@ -1,11 +1,13 @@
 import java.lang.Math;
 
-import singleton.UserSession;
-import factory.*;
-import prototype.*;
-import objectPool.*;
-import builder.outfit.*;
-import builder.phone.*;
+import Creational.singleton.UserSession;
+import Creational.factory.*;
+import Creational.prototype.*;
+import Creational.objectPool.*;
+import Creational.builder.outfit.*;
+import Creational.builder.phone.*;
+
+import Structural.bridge.*;
 
 public class DesignPatterns{
 	public static void main(String[] args) throws InterruptedException{
@@ -14,6 +16,7 @@ public class DesignPatterns{
 		demoPrototype();
 		demoObjectPool();	
 		demoBuilder();
+		demoBridge();
 	}
 	private static void demoSingleton(){
 		System.out.println("****************\nSINGLETON DESIGN\n****************");
@@ -97,7 +100,15 @@ public class DesignPatterns{
 		phoneBuilder = new Phone.PhoneBuilder("Pi", "314-159-2653", "Android").canText(true).hasGPS(true);
 		phone = phoneBuilder.build();
 		System.out.println(phone.toString());
-
-	
+	}
+	private static void demoBridge() {
+		System.out.println("**************\nBRIDGE PATTERN\n**************");
+		Cook yuppie = new Yuppie();
+		Meal yuppieMeal = new Pizza(yuppie);
+		yuppieMeal.prepare();
+		
+		Cook chef = new Chef();
+		Meal chefMeal = new Pizza(chef);
+		chefMeal.prepare();
 	}
 }

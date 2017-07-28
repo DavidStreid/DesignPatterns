@@ -1,4 +1,4 @@
-package prototype;
+package Creational.prototype;
 
 import java.util.Hashtable;
 

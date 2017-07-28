@@ -1,4 +1,4 @@
-package builder.outfit;
+package Creational.builder.outfit;
 
 public interface OutfitBuilder{
 	public void buildBottoms();

@@ -1,4 +1,4 @@
-package factory;
+package Creational.factory;
 
 public class TakeOut extends Food{
 	public TakeOut(){

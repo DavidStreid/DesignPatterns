@@ -1,4 +1,4 @@
-package prototype;
+package Creational.prototype;
 
 public class Orc extends Avatar{
 	public Orc(){
